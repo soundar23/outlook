@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 const Mail = ({mailObj,props}) => {
     //console.log(mailObj);
     const context = React.useContext(MyContext);
+    console.log(context.state.route);    
     const classes = useStyles();
     var mailData='';
     const deleteMail=(props)=>{
@@ -115,20 +116,20 @@ const Mails =(props)=> {
         var mails='';
       
         var heading='';
-        if(context.state.route=='/Inbox' || context.state.route=='/')
+        if(location.pathname=='/Inbox' ||location.pathname=='/')
         {
             mails=props.inbox.inbox;
             heading='Inbox';            
         }
-        else if(context.state.route=='/Spam')
+        else if(location.pathname=='/Spam')
         {
             mails=props.spam.spam;
             heading='Spam';            
         }
-        else if(context.state.route=='/Delete')
+        else if(location.pathname=='/Delete')
         {
             mails=props.inbox.deleted;
-            heading='Delete';            
+            heading='Deleted Items';            
         }
         else{
             mails=null;

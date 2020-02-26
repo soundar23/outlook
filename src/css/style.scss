@@ -6,6 +6,22 @@
     src: url(../assets/fonts/MaterialIcons-Regular.eot);
     src: local('Material Icons'), local('MaterialIcons-Regular'), url(../assets/fonts/MaterialIcons-Regular.woff2) format('woff2'), url(../assets/fonts/MaterialIcons-Regular.woff) format('woff'), url(../assets/fonts/MaterialIcons-Regular.ttf) format('truetype');
 }
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
 .material-icons {
     margin: auto;
     font-family: 'Material Icons';
@@ -29,9 +45,23 @@
       
   }
   .Folder-Wrapper{
-      flex:1.5;
+    //   animation: 0.5s ease-out 0s 1 slideInFromLeft ;
+      flex:0;
       height: 540px;
       overflow: auto;
+      animation: flexGrow 500ms ease-out forwards;
+  }
+  @keyframes flexGrow {
+  to {
+    flex: 1.5;
+  }
+}
+  .Icon-Wrapper{
+    //   animation: 0.5s ease-out 0s 1 slideInFromRight ;
+      animation: flexShrink 500ms ease-out forwards;
+      flex:1.5;
+      
+
   }
   .Mail-Wrapper{
     //   flex:3;
@@ -40,6 +70,11 @@
       overflow: auto;
       
   }
+  @keyframes flexShrink {
+  to {
+    flex: .01;
+  }
+}
   .Content-Wrapper{
     flex:5;
     height: 100%;

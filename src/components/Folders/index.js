@@ -39,21 +39,21 @@ const Folder = (props) => {
     <ExpansionPanelDetails>
       <Typography>
         <MenuList>
-          <MenuItem onClick={() => { location.href='/Inbox'; context.setFolder("Inbox"); context.setRoute("/Inbox"); }}><i class="material-icons" style={{ paddingRight: 10, margin: 0 }} >inbox</i>Inbox {props.inbox.inboxCount}</MenuItem>
-          <MenuItem onClick={() => { location.href='/Spam'; context.setFolder("Spam"); context.setRoute("/Spam"); }}><i class="material-icons" style={{ paddingRight: 10, margin: 0 }}  >edit</i>Spam {props.spam.spamCount}</MenuItem>
-          <MenuItem onClick={() => { location.href='/Delete';context.setFolder("Delete"); context.setRoute("/Delete"); }}><i class="material-icons" style={{ paddingRight: 10, margin: 0 }}  >delete </i>Deleted Items</MenuItem>
-          <MenuItem onClick={() => { location.href='/Custom';  context.setFolder("Custom"); context.setRoute("/Custom"); }}><i class="material-icons" style={{ paddingRight: 10, margin: 0 }} >play_arrow</i> Sent Items</MenuItem>
+          <MenuItem onClick={() => { history.pushState(null,'Inbox',"/Inbox");context.setFolder("Inbox"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ paddingRight: 10, margin: 0 }} >inbox</i>Inbox {props.inbox.inboxCount}</MenuItem>
+          <MenuItem onClick={() => {  history.pushState(null,'Spam','/Spam'); context.setFolder("Spam"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ paddingRight: 10, margin: 0 }}  >edit</i>Spam {props.spam.spamCount}</MenuItem>
+          <MenuItem onClick={() => {  history.pushState(null,'Delete','/Delete');context.setFolder("Delete"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ paddingRight: 10, margin: 0 }}  >delete </i>Deleted Items</MenuItem>
+          <MenuItem onClick={() => {  history.pushState(null,'Custom','/Custom');  context.setFolder("Custom"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ paddingRight: 10, margin: 0 }} >play_arrow</i> Sent Items</MenuItem>
 
         </MenuList>
       </Typography>
     </ExpansionPanelDetails>
   </ExpansionPanel>:<div style={{flex:0.5}}> <Typography>
-        <MenuList>
-          <MenuItem onClick={() => { location.href='/Inbox'; context.setFolder("Inbox"); context.setRoute("/Inbox"); }}><i class="material-icons" style={{ margin: 0 }} >inbox</i></MenuItem>
-          <MenuItem onClick={() => { location.href='/Spam'; context.setFolder("Spam"); context.setRoute("/Spam"); }}><i class="material-icons" style={{ margin: 0 }}  >edit</i></MenuItem>
-          <MenuItem onClick={() => { location.href='/Delete';context.setFolder("Delete"); context.setRoute("/Delete"); }}><i class="material-icons" style={{ margin: 0 }}  >delete </i></MenuItem>
-          <MenuItem onClick={() => { location.href='/Custom';  context.setFolder("Custom"); context.setRoute("/Custom"); }}><i class="material-icons" style={{ margin: 0 }} >play_arrow</i></MenuItem>
-
+   <MenuList>
+          <MenuItem onClick={() => { history.pushState(null,'Inbox',"/Inbox");context.setFolder("Inbox"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ margin: 0 }} >inbox</i></MenuItem>
+          <MenuItem onClick={() => {  history.pushState(null,'Spam','/Spam'); context.setFolder("Spam"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ margin: 0 }}  >edit</i></MenuItem>
+          <MenuItem onClick={() => {  history.pushState(null,'Delete','/Delete');context.setFolder("Delete"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ margin: 0 }}  >delete </i></MenuItem>
+          <MenuItem onClick={() => {  history.pushState(null,'Custom','/Custom');  context.setFolder("Custom"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ margin: 0 }} >play_arrow</i></MenuItem>
+        
         </MenuList>
       </Typography></div>);
 
