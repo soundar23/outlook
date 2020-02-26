@@ -32,7 +32,7 @@ const Folder = (props) => {
     <ExpansionPanelSummary
       expandIcon={<ExpandMoreIcon />}
       aria-controls="panel1a-content"
-      id="panel1a-header"
+      id="panel1a-header "
     >
       <Typography className={classes.heading}>Folders</Typography>
     </ExpansionPanelSummary>
