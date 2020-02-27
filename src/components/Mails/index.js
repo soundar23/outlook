@@ -85,7 +85,7 @@ const Mail = ({ mailObj, props }) => {
             >
               <div
                 style={{
-                  height: "40%",
+                  height: "25%",
                   overflow: "hidden",
                   paddingLeft: 10
                 }}

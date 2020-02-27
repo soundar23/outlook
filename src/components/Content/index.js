@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import {MyContext} from '../MyProvider';
+import { Text } from "office-ui-fabric-react/lib/Text";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -17,25 +18,26 @@ const MailContent=({obj})=>{
   {
     return (
         <div>
-             <div style={{padding:'40px 0px 0px 15px',textAlign:'left',fontSize:24}}>
-              {obj.subject}
+          
+             <div style={{textAlign:'left',fontSize:24,marginLeft:10}}>
+                <Text variant="large">{obj.subject}</Text>
           </div>
             <Paper className={classes.root}>
       <Typography>
       <div > 
           <div style={{padding:'0px 0px 40px 0px',textAlign:'left',fontSize:22,color:'#0078D4'}}>
-              {obj.mId}<br/>
+                <Text variant="medium">{obj.mId} </Text><br/>
               <span style={{fontSize:16}}>{obj.time}</span>
           </div>
-          <div>
-              {obj.content}
+          <div style={{textAlign:'left'}}>
+                <Text variant="medium">{obj.content} </Text>
           </div>
           </div>
       </Typography>
       
     </Paper>
           
-         
+        
         </div>
     )
 }
