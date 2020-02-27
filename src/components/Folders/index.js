@@ -9,7 +9,9 @@ import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import { MyContext } from '../MyProvider';
 import {observer, inject} from 'mobx-react';
-
+import { Nav } from 'office-ui-fabric-react/lib/Nav';
+import { IOverflowSetItemProps, OverflowSet } from 'office-ui-fabric-react/lib/OverflowSet';
+import { CommandBarButton } from 'office-ui-fabric-react/lib/Button';
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
@@ -20,6 +22,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const setlink=()=>{
+    history.pushState(null,'Inbox',"/Inbox");context.setFolder("Inbox"); context.setRoute(location.pathname); 
+}
 
 const Folder = (props) => {
   const classes = useStyles();
@@ -28,33 +33,94 @@ const Folder = (props) => {
   const handleChange = (expanded) => {
     setExpanded(!expanded);
   };
-  return (props.open?<ExpansionPanel expanded={expanded} onChange={() => handleChange(expanded)} style={{ boxShadow: 'none' }}>
-    <ExpansionPanelSummary
-      expandIcon={<ExpandMoreIcon />}
-      aria-controls="panel1a-content"
-      id="panel1a-header "
-    >
-      <Typography className={classes.heading}>Folders</Typography>
-    </ExpansionPanelSummary>
-    <ExpansionPanelDetails>
-      <Typography>
-        <MenuList>
-          <MenuItem onClick={() => { history.pushState(null,'Inbox',"/Inbox");context.setFolder("Inbox"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ paddingRight: 10, margin: 0 }} >inbox</i>Inbox {props.inbox.inboxCount}</MenuItem>
-          <MenuItem onClick={() => {  history.pushState(null,'Spam','/Spam'); context.setFolder("Spam"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ paddingRight: 10, margin: 0 }}  >edit</i>Spam {props.spam.spamCount}</MenuItem>
-          <MenuItem onClick={() => {  history.pushState(null,'Delete','/Delete');context.setFolder("Delete"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ paddingRight: 10, margin: 0 }}  >delete </i>Deleted Items</MenuItem>
-          <MenuItem onClick={() => {  history.pushState(null,'Custom','/Custom');  context.setFolder("Custom"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ paddingRight: 10, margin: 0 }} >play_arrow</i> Sent Items</MenuItem>
-
-        </MenuList>
-      </Typography>
-    </ExpansionPanelDetails>
-  </ExpansionPanel>:<div style={{flex:0.5}}> <Typography>
-   <MenuList>
-          <MenuItem onClick={() => { history.pushState(null,'Inbox',"/Inbox");context.setFolder("Inbox"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ margin: 0 }} >inbox</i></MenuItem>
-          <MenuItem onClick={() => {  history.pushState(null,'Spam','/Spam'); context.setFolder("Spam"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ margin: 0 }}  >edit</i></MenuItem>
-          <MenuItem onClick={() => {  history.pushState(null,'Delete','/Delete');context.setFolder("Delete"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ margin: 0 }}  >delete </i></MenuItem>
-          <MenuItem onClick={() => {  history.pushState(null,'Custom','/Custom');  context.setFolder("Custom"); context.setRoute(location.pathname); }}><i class="material-icons" style={{ margin: 0 }} >play_arrow</i></MenuItem>
-        
-        </MenuList>
+  const _onRenderItem = (item) => {
+    return (
+      <CommandBarButton
+        role="menuitem"
+        aria-label={item.name}
+        styles={{ root: { padding: '10px' } }}
+        iconProps={{ iconName: item.icon }}
+        onClick={item.onClick}
+      />
+    );
+  };
+ 
+  return (props.open?
+  <div>
+   <Nav
+      styles={{ root: { width: 300 } }}
+      ariaLabel="Nav example similiar to one found in this demo page"
+      groups={[
+        {
+          name: 'Favourites',
+          expandAriaLabel: 'Expand Basic components section',
+          collapseAriaLabel: 'Collapse Basic components section',
+          links: [
+            {
+              key: 'Inbox',
+              name: 'Inbox',
+              iconProps:{ iconName: 'Inbox' },
+              onClick:() => { history.pushState(null,'Inbox',"/Inbox");context.setFolder("Inbox"); context.setRoute(location.pathname); }
+            },
+            {
+              key: 'Spam',
+              name: 'Spam',
+              iconProps:{ iconName: 'Edit' },              
+              onClick:() => {  history.pushState(null,'Spam','/Spam'); context.setFolder("Spam"); context.setRoute(location.pathname); }
+            },
+            {
+              key: 'Deleted Items',
+              name: 'Deleted Items',
+              iconProps:{ iconName: 'Delete' },              
+              onClick:() => {  history.pushState(null,'Delete','/Delete');context.setFolder("Delete"); context.setRoute(location.pathname); }
+            },
+            {
+              key: 'Sent Items',
+              name: 'Sent Items',
+              iconProps:{ iconName: 'send' },              
+              onClick:() => { history.pushState(null,'Custom','/Custom');  context.setFolder("Custom"); context.setRoute(location.pathname); }
+            }
+          ]
+        }
+      ]}
+     
+    />
+    </div>:<div style={{flex:0.5}}> <Typography>
+       <OverflowSet
+        aria-label="Vertical Example"
+        role="menubar"
+        vertical
+        items={[
+          {
+            key: 'Inbox',
+            icon: 'Inbox',
+            name: 'Inbox',
+            ariaLabel: 'New. Use left and right arrow keys to navigate',
+              onClick:() => {  history.pushState(null,'Spam','/Spam'); context.setFolder("Spam"); context.setRoute(location.pathname); }
+          },
+          {
+            key: 'Spam',
+            icon: 'Edit',
+            name: 'Spam',
+              onClick:() => {  history.pushState(null,'Spam','/Spam'); context.setFolder("Spam"); context.setRoute(location.pathname); }
+          },
+          {
+            key: 'Deleted Items',
+            icon: 'Delete',
+            name: 'Deleted items',
+              onClick:() => {  history.pushState(null,'Delete','/Delete');context.setFolder("Delete"); context.setRoute(location.pathname); }
+          },
+          {
+            key: 'Sent Items',
+            icon: 'Send',
+            name: 'Sent items',
+            onClick:() => { history.pushState(null,'Custom','/Custom');  context.setFolder("Custom"); context.setRoute(location.pathname); }
+          },
+        ]}
+      
+        onRenderItem={_onRenderItem}
+      />
+   
       </Typography></div>);
 
 }

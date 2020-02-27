@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import { initializeIcons } from "office-ui-fabric-react/lib/Icons";
 
 // const routs = (
 //     < BrowserRouter >
@@ -16,6 +17,7 @@ import * as serviceWorker from './serviceWorker';
 //        </div>
 //     </ BrowserRouter >
 //  );
+initializeIcons();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

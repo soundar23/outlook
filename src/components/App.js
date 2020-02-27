@@ -6,7 +6,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import stores from '../stores';
 import {Provider} from 'mobx-react';
 import {Router, Route, BrowserRouter,Switch } from 'react-router-dom';
-
 import Homepage from './Homepage';
 function App() {
   const theme = getMuiTheme();

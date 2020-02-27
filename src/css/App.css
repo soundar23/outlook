@@ -39,3 +39,11 @@
     transform: rotate(360deg);
   }
 }
+.iconColor{
+  height: 45px;
+  padding: 0px 25px;
+}
+.iconColor:hover{
+  color:white;
+  background-color: #005A9E;
+}

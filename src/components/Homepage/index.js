@@ -5,12 +5,18 @@ import Folder from '../Folders';
 import Mails from '../Mails';
 import Content from '../Content';
 import { MyProvider } from '../MyProvider';
-import IconButton from 'material-ui/IconButton';
+// import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Text } from 'office-ui-fabric-react/lib/Text';
+import { SearchBox } from 'office-ui-fabric-react/lib/SearchBox';
+import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
+import { IconButton } from 'office-ui-fabric-react/lib/Button';
+import { DefaultButton,PrimaryButton } from 'office-ui-fabric-react';
+
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
@@ -30,27 +36,52 @@ const Homepage = (props) => {
         <div className="App">
             {/*{Main Toolbar}*/}
             <Toolbar style={{ backgroundColor: '#0078D4', color: 'white', padding: 0, height: 45 }}>
-                <IconButton style={{ color:'white'}}><i className="material-icons" style={{ verticalAlign: "middle", flex: 1, padding: 12 }} onClick={() => { return null; }}>apps</i></IconButton>
-                <span style={{ flex: 25 }}><h1 style={{ float: "left", margin: 'auto', fontSize: 18, paddingTop: 10 }}>Outlook Mail</h1></span>
-                 <IconButton style={{ color:'white'}}><i className="material-icons" style={{ verticalAlign: "middle", flex: 2 }}>settings</i></IconButton>
-                 <IconButton style={{ color:'white'}}><i className="material-icons" style={{ verticalAlign: "middle", flex: 2 }}>help</i></IconButton>
-                 <IconButton style={{ color:'white'}}><i className="material-icons" style={{ verticalAlign: "middle", flex: 2 }}>notifications</i></IconButton>
-                 <IconButton style={{ color:'white'}}><i className="material-icons" style={{ verticalAlign: "middle", flex: 2 }}>messages</i></IconButton>
+                <IconButton className="iconColor" style={{ color:'white',height:45,padding:'0px 30px'}}><i className="material-icons" onClick={() => { return null; }}>apps</i></IconButton>
+                 <div  style={{ flex: 1,textAlign:'left',padding:10 }}>
+                 <Text  variant={'xLarge'}  >
+                 <span>Outlook </span>
+                 </Text>
+                 </div>
+                  <div  style={{ flex: 6,textAlign:'left',padding:'7px 0px' }}>
+                  <SearchBox
+                    styles={{ root: { width: 400,backgroundColor:'#B3D7F2',border:'1px solid transparent' } }}
+                    iconProps={{iconName:'Search'}}
+                    placeholder="Search"
+                    onEscape={ev => {
+                    console.log('Custom onEscape Called');
+                    }}
+                    onClear={ev => {
+                    console.log('Custom onClear Called');
+                    }}
+                    onChange={(_, newValue) => console.log('SearchBox onChange fired: ' + newValue)}
+                    onSearch={newValue => console.log('SearchBox onSearch fired: ' + newValue)}
+                    onFocus={() => console.log('onFocus called')}
+                    onBlur={() => console.log('onBlur called')}
+                />
+                    </div>
+                    <div  style={{flex: 2}}>
+                        
+                         <IconButton className="iconColor" style={{ color:'white'}} iconProps={{ iconName: 'SkypeLogo' }} title="SkypeLogo" ariaLabel="SkypeLogo" />
+                         <IconButton className="iconColor" style={{ color:'white'}} iconProps={{ iconName: 'settings' }} title="settings" ariaLabel="settings" />
+                         <IconButton className="iconColor" style={{ color:'white'}} iconProps={{ iconName: 'help' }} title="help" ariaLabel="help" />
+                         <IconButton className="iconColor" style={{ color:'white'}} iconProps={{ iconName: 'Megaphone' }} title="Megaphone" ariaLabel="Megaphone" />
+                         <IconButton className="iconColor" style={{ color:'white'}} iconProps={{ iconName: 'Ringer' }} title="Ringer" ariaLabel="Ringer" />
+                         <IconButton className="iconColor" style={{ color:'white'}} iconProps={{ iconName: 'EventToDoLogo' }} title="EventToDoLogo" ariaLabel="EventToDoLogo" />
+              
+                 </div>
             </Toolbar>
 
             <MyProvider>
-                <Toolbar style={{ backgroundColor: '#FAF9F8', color: 'white', padding: 0 }}>
-                    <div style={{ flex: 1.5 }}>
-                        <IconButton style={{ color:'grey'}} onClick={() => handleToggle()}><i class="material-icons" style={{ fill: 'rgba(0, 0, 0, 0.54)', color: 'rgba(0, 0, 0, 0.54)' }}>menu</i></IconButton>
-                        <RaisedButton label="New Message" backgroundColor='#0078D4' labelColor='white' labelStyle={{ fontWeight: 'bold', textTransform: 'capitalize' }} style={{ margin: 12, }} />
+                <Toolbar style={{ backgroundColor: '#FAF9F8', color: 'white', padding: 0,height:'55px' }}>
+                    <div style={{ flex: 1.5 ,textAlign:'left'}}>
+                        
+                         <IconButton style={{ color:'grey',padding:'25px'}} onClick={() => handleToggle()} iconProps={{ iconName: 'GlobalNavButton' }} title="GlobalNavButton" ariaLabel="GlobalNavButton" />
+                         <PrimaryButton text="New message" allowDisabledFocus style={{margin:'10px 0px',whiteSpace:'nowrap',width:'110px'}} />
                     </div>
-                    <div style={{ flex: 3 }}>
-                        <RaisedButton label="Mark All As Read" icon={<i class="material-icons">
-                            mail_outline
-                       </i>} style={{ margin: 12, boxShadow: 'none' }} />
-                        <RaisedButton label="undo" icon={<i class="material-icons">
-                            undo
-                       </i>} disabled={true} backgroundColor='#FAF9F8' style={{ margin: 12, boxShadow: 'none', }} />
+                    <div >
+                   <DefaultButton text="Mark all as read" iconProps={{iconName:'Mail'}} style={{margin:'10px 0px',whiteSpace:'nowrap',color:'#0078D4',border:'none'}} allowDisabledFocus  />
+                      
+                        <DefaultButton text='undo' iconProps={{iconName:'undo'}}  style={{margin:'10px 0px'}} disabled={true}/>
                     </div>
                     <div style={{ flex: 5 }}>
                     </div>
