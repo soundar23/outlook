@@ -41,8 +41,8 @@ const MailContent=({obj})=>{
         </div>
     )
 }
-return <div>
-    <i class="material-icons" style={{ color:'rgb(0, 120, 212)',fontSize: 100,padding: '150px 150px 0px' }}>mail_outline</i>
+return <div style={{marginTop:190}}>
+   <img src="https://ow2.res.office365.com/owamail/2020021701.12/scripts/../resources/images/noSelection-1b17e1809c7b60db3b9242e8a0ef469b.svg" aria-label="Select an item to read" width="120px" height="120px"/>
     <div>Select an item to read</div>
 </div>;
 
